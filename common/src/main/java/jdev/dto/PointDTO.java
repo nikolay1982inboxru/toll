@@ -7,6 +7,7 @@ public class PointDTO {
     private double lat;
     private double lon;
     private String autoId;
+    private long time;
 
     public double getLat() {
         return lat;
@@ -44,5 +45,13 @@ public class PointDTO {
                 ", lon=" + lon +
                 ", autoId='" + autoId + '\'' +
                 '}';
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public long getTime() {
+        return time;
     }
 }

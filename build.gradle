@@ -1,22 +1,63 @@
 subprojects{
     apply plugin: 'java'
+    apply plugin: 'java-library-distribution'
+    apply plugin: "com.github.onslip.gradle-one-jar"
+
     repositories{
         mavenCentral()
         mavenLocal()
     }
+    dependencies{
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.github.onslip:gradle-one-jar:1.0.5"
+    }
+}
 
 
 project(':common'){
     dependencies{
-        testCompile group: 'junit', name: 'junit', version: '4.12'
         compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
+    }
+    task completeJar(type: OneJar) {
+        mainClass = 'jdev.dto.Main'
+        archiveName = 'dto.jar'
     }
 }
 project(':server-ui'){
+    dependencies{
+        compile project(':common')
+    }
+    task completeJar(type: OneJar) {
+        mainClass = 'jdev.serverui.Main'
+        archiveName = 'serverui.jar'
+    }
 }
 project(':server-core'){
+    dependencies{
+        compile project(':common')
+    }
+    task completeJar(type: OneJar) {
+        mainClass = 'jdev.servercore.Main'
+        archiveName = 'servercore.jar'
+    }
 }
-project(':tracker-ui'){
+project(':tracker-core'){
+    dependencies{
+        compile project(':common')
+    }
+
+    task completeJar(type: OneJar) {
+        mainClass = 'jdev.tracker.Main'
+        archiveName = 'tracker.jar'
+    }
 }
