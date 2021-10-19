@@ -25,7 +25,6 @@ public class ServiceSendMsg {
         BlockingQueue bq = serviceSaveMsg.getBlockingQueue();
         list = new ArrayList<>(bq);
         cleanDump();
-
         return list;
     }
 

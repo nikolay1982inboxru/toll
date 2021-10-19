@@ -7,7 +7,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ServiceSaveMsg {
-    private static final Logger LOG_ERRORS = LoggerFactory.getLogger("allError.TrackerCore");
+    private static  final Logger LOG_ERRORS = LoggerFactory.getLogger("allError.TrackerCore");
     
     // Создан объект блокирующей очереди по типу FIFO
     private BlockingQueue<String> blockingQueue = new LinkedBlockingQueue<>(100);
