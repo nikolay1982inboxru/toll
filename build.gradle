@@ -62,6 +62,7 @@ project(':server-ui'){
         runtime('org.springframework.boot:spring-boot-devtools')
         testCompile('org.springframework.boot:spring-boot-starter-test')
 
+        // для разграничения прав пользователей
         compile ('org.springframework.boot:spring-boot-starter-security')
         testCompile("org.springframework.security:spring-security-test")
 
@@ -96,6 +97,11 @@ project(':server-core'){
         testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
 
         compile(group: "com.github.java-json-tools", name: "json-schema-validator", version: "2.2.14")
+
+        // Для работы с БД
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        compile("org.liquibase:liquibase-core")
+        compile("com.h2database:h2")
     }
     task completeJar(type: OneJar) {
         mainClass = 'jdev.servercore.Main'
@@ -126,8 +132,13 @@ project(':tracker-core'){
         compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
         testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
 
+        // Для работы с БД
+        compile('org.springframework.boot:spring-boot-starter-data-jpa'){
+            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        }
+        compile group: 'org.liquibase', name: 'liquibase-core', version: '3.5.3'
+        compile group: 'com.h2database', name: 'h2', version: '1.4.200'
     }
-
     task completeJar(type: OneJar) {
         mainClass = 'jdev.tracker.Main'
         archiveName = 'tracker.jar'

@@ -1,5 +1,10 @@
-**/*.iml
-**/.*
 !/.gitignore
-/gradlew
-/gradlew.bat
+
+**/*.iml
+.gradle/
+.idea/
+gradle/
+**/build/
+gradlew
+gradlew.bat
+*.log
