@@ -94,6 +94,8 @@ project(':server-core'){
         testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.4'
         compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
         testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+
+        compile(group: "com.github.java-json-tools", name: "json-schema-validator", version: "2.2.14")
     }
     task completeJar(type: OneJar) {
         mainClass = 'jdev.servercore.Main'

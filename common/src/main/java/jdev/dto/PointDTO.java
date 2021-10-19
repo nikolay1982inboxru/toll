@@ -11,6 +11,15 @@ public class PointDTO {
     private String autoId;
     private long time;
 
+    public PointDTO(){
+        lat = -1.0;
+        lon = -1.0;
+        azimuth = -1;
+        instantSpeed = -1.0;
+        autoId = "null";
+        time = -1L;
+    }
+
     public double getLat() {
         return lat;
     }
