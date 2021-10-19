@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <!-- Секция аппендеров -->
+    <Appenders>
+        <File name="allError.ServerCore" fileName="logs/allError.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%logger{36}] - %msg%n"/>
+        </File>
+        <Console name="ConsoleError" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%logger{36}] - %msg%n" />
+        </Console>
+
+
+        <File name="takeCoords.ServerCore" fileName="logs/tracker/coords.log">
+            <PatternLayout>
+                <Pattern>%m %ex%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Console name="ConsoleInfo" target="SYSTEM_OUT">
+            <PatternLayout pattern="%msg%n" />
+        </Console>
+
+
+        <File name="allTrace.ServerCore" fileName="logs/allTrace.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss.SSS} [%logger{36}] - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Console name="ConsoleTrace" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%logger{36}] - %msg%n" />
+        </Console>
+    </Appenders>
+    <!-- Секция логгеров -->
+    <Loggers>
+        <Root level="ERROR">
+            <AppenderRef ref="allError.ServerCore" level="error"/>
+            <AppenderRef ref="ConsoleError"  level="ERROR"/>
+        </Root>
+
+        <Logger name="takeCoords.ServerCore" level="info">
+            <AppenderRef ref="takeCoords.ServerCore" level="INFO"/>
+            <AppenderRef ref="ConsoleInfo"  level="INFO"/>
+        </Logger>
+
+        <Logger name="allTrace.ServerCore" level="trace">
+            <AppenderRef ref="allTrace.ServerCore" level="TRACE"/>
+            <AppenderRef ref="ConsoleTrace"  level="TRACE"/>
+        </Logger>
+    </Loggers>
+</Configuration>

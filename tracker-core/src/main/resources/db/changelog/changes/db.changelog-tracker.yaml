@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: PointGPS
+      author: khvat-ea
+      changes:
+        - createTable:
+            tableName: PointGPS
+            columns:
+              - column:
+#                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+#                    primaryKeyName: point_pkey
+                  name: time_point
+                  type: BIGINT
+              - column:
+                  name: latitude
+                  type: double
+              - column:
+                  name: longitude
+                  type: DOUBLE
+              - column:
+                  name: azimuth
+                  type: INT
+              - column:
+                  name: instant_speed
+                  type: DOUBLE
+              - column:
+                  name: auto_number
+                  type: VARCHAR(13)

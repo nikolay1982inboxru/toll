@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PointDTO",
+  "description": "JSON representation GPS coordinates",
+  "type": "object",
+  "properties": {
+    "": {
+      "$ref": "#/definitions/PointDTO"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "PointDTO": {
+      "title": "PointDTO",
+      "description": "An PointDTO entry",
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        },
+        "azimuth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 360
+        },
+        "instantSpeed": {
+          "type": "number"
+        },
+        "autoId": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer"
+        }
+      },
+      "required": [ "lat", "lon", "azimuth", "instantSpeed", "autoId", "time"],
+      "additionalItems": false
+    }
+  }
+}
