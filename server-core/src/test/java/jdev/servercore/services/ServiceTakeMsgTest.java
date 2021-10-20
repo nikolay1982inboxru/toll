@@ -36,7 +36,7 @@ public class ServiceTakeMsgTest {
         Logger logger = Logger.getLogger(ServiceTakeMsg.class);
         logger.addAppender(mockAppender);
 
-        // Читаем первыю запись из списка координат
+        // Читаем первую запись из списка координат
         ServiceTakeMsg serviceTakeMsg = new ServiceTakeMsg(new RestTemplate());
         String actual = serviceTakeMsg.takeQueueMsg().get(0);
 

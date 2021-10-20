@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 
 @EnableJpaRepositories("jdev.tracker.db")
@@ -21,6 +22,7 @@ import java.util.List;
 public class ServiceGPS {
     private static final Logger LOG_ERRORS = LoggerFactory.getLogger("allError.TrackerCore");
     private static final Logger LOG_TRACE = LoggerFactory.getLogger("allTrace.TrackerCore");
+    private String[] listAuto = {"a123bc99RU", "d456ef99RU", "g789hi99RU"};
 
     @Autowired
     PointGPSRepository pointGPSRepository;
@@ -32,19 +34,20 @@ public class ServiceGPS {
     // Эмулирование случайных значений (широта, долгота, азимут, мгн.скорость)
     void emulateValue() {
         PointDTO pointDTO = new PointDTO();
+        Random r = new Random();
 
         // Радоминг точки GPS
         pointDTO.setLon(Math.random() * 180);
         pointDTO.setLat(Math.random() * 90);
         pointDTO.setAzimuth((int)(Math.random() * 360));
         pointDTO.setInstantSpeed(Math.random() * 130);
-        pointDTO.setAutoId("x777xx111RU");
+        pointDTO.setAutoId(listAuto[r.nextInt(listAuto.length)]);
         pointDTO.setTime(System.currentTimeMillis());
 
         // Запись точки в очередь
         try {
             serviceSaveMsg.putMsg(pointDTO.toJson());
-            LOG_TRACE.trace("Emulate value & save point.");
+            LOG_TRACE.trace("Emulate value & save point for autoID = " + pointDTO.getAutoId());
         }
         catch (JsonProcessingException JsonEx){
             LOG_ERRORS.error("Неудачная попытка сформировать JSON описание для PointDTO: " + JsonEx.getMessage());

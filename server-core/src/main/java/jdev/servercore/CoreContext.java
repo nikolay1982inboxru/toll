@@ -1,6 +1,7 @@
 package jdev.servercore;
 
 import jdev.servercore.services.ServiceTakeMsg;
+import jdev.servercore.services.ServiceTakeRoute;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -17,6 +18,9 @@ import org.springframework.web.client.RestTemplate;
 public class CoreContext {
     @Bean
     public ServiceTakeMsg serviceTakeMsg() {return new ServiceTakeMsg(new RestTemplate());}
+
+    @Bean
+    public ServiceTakeRoute serviceTakeRoute() {return  new ServiceTakeRoute(new RestTemplate());}
 
     @Bean
     public TaskScheduler poolScheduler() {
